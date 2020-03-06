@@ -1,0 +1,60 @@
+// linear search, tablou de pointeri
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void citire(char **cuv, int n)
+{
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		printf("Scrieti cuvantul cu nr %d: ", i + 1);
+		// alocam memorie pt fiecare cuv in functie de lungime
+		cuv[i] = (char*)malloc(sizeof(strlen(cuv[i])));
+		scanf("%s", cuv[i]);
+	}
+}
+
+void cautare(char **cuv, int n, char cuvant[])
+{
+	int i;
+	for (i = 0; i < n; i++)
+		if (strcmp(cuv[i], cuvant) == 0)
+			printf("S-a gasit cuvantul %s pe pozitia %d\n", cuv[i], i + 1);
+}
+
+int main()
+{
+	char *cuv[20],  cuvant[20];
+	int n, opt;
+	do
+	{
+		printf("\n0.Iesire\n");
+		printf("1.Citire\n");
+		printf("2.Cautare\n");
+		printf("Optiunea dvs este: ");
+		scanf("%d", &opt);
+		switch (opt)
+		{
+		case 0: 
+			exit(0);
+			break;
+		case 1:
+			printf("Dati nr de cuvinte pe care doriti sa le cititi: ");
+			scanf("%d", &n);
+			citire(cuv, n);
+			break;
+		case 2: 
+			printf("Introduceti cuvantul pe care doriti sa il cautati: ");
+			scanf("%s", cuvant);
+			cautare(cuv, n, cuvant);
+			break;
+		default: 
+			printf("Optiune gresita!\n ");
+			break;
+		}
+	} while (1);
+	system("pause");
+	return 0;
+}
