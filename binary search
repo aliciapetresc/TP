@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int n, nr, i, v[100], right, mid, poz;
+	int left = 1;
+	printf("Cate numere doriti sa cititi? ");
+	scanf("%d", &n);
+	right = n - 1;
+
+	for (i = 1; i <= n; i++)
+	{
+		printf("v[%d]=", i);
+		scanf("%d", &v[i]);
+	}
+
+	printf("Numarul pe care il cautati este: ");
+	scanf("%d", &nr);
+
+	while (left <= right)
+	{
+		mid = (left + right) / 2;
+		if (v[mid] == nr)
+		{
+			poz = mid;
+			break;
+		}
+		else
+			if (v[mid]> nr)
+				right = mid - 1;
+			else
+				left = mid + 1;
+	}
+	printf("Numarul se afla pe pozitia %d \n", poz);
+	system("pause");
+	return 0;
+}
